@@ -4,6 +4,7 @@ import Card from "react-bootstrap/Card";
 import { Grid } from "@material-ui/core";
 import { withRouter } from "react-router-dom";
 import IndexNavbar from "./Navbars/IndexNavbar";
+import Button from "./Button.js";
 
 class Projetos extends Component {
   constructor() {
@@ -16,13 +17,11 @@ class Projetos extends Component {
 
   componentDidMount = () => {
     try {
-      axios
-        .get("https://smartcitycmei.000webhostapp.com/myslim/dados.json")
-        .then((response) => {
-          this.setState({
-            dados: response.data,
-          });
+      axios.get("http://localhost:8080/get_requesitos").then((response) => {
+        this.setState({
+          dados: response.data,
         });
+      });
     } catch (error) {
       console.error(error);
     }
@@ -33,8 +32,13 @@ class Projetos extends Component {
     return (
       <div>
         <IndexNavbar />
+
         <div style={{ paddingTop: "75px" }}>
-          <h1 id="apartamentoTeste">Projetos</h1>
+          <Button
+            onClick={(event) => (window.location.href = "/AdicionarProjeto")}
+            text="Adicionar Projeto"
+          />
+
           <Grid container id="grid" spacing={3}>
             {dados.length > 0 ? (
               dados.map((el, index) => {
@@ -50,16 +54,16 @@ class Projetos extends Component {
                       />
                       <Card.Body>
                         <Card.Title id="tituloTeste">
-                          <h4>{el.id}</h4>
+                          <h4>{el.nomeProjeto}</h4>
                         </Card.Title>
                         <Card.Title id="tituloTeste">
-                          <h4>{el.text}</h4>
+                          <h4>{el.desc}</h4>
                         </Card.Title>
                         <Card.Title id="tituloTeste">
-                          <h4>{el.day}</h4>
+                          <h4>{el.prazo}</h4>
                         </Card.Title>
                         <Card.Title id="tituloTeste">
-                          <h4>{el.reminder.toString()}</h4>
+                          <h4>{el.categoria}</h4>
                         </Card.Title>
 
                         <br></br>

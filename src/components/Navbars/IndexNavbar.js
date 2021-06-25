@@ -43,18 +43,17 @@ export default function Navbar(props) {
                   Projetos
                 </a>
               </li>
-            </ul>
-            <ul className="flex flex-col lg:flex-row list-none mr-auto">
               <li className="flex items-center">
                 <a
                   className="hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                  href="/Projetos"
+                  href="/AdicionarProjeto"
                 >
                   <i className="text-blueGray-400 far fa-file-alt text-lg leading-lg mr-2" />{" "}
-                  Equipa
+                  Colaboradores
                 </a>
               </li>
             </ul>
+
             <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
               <li className="flex items-center">
                 <IndexDropdown />
