@@ -17,6 +17,7 @@ import Profile from "views/Profile.js";
 import Index from "views/Index.js";
 import Projetos from "components/Projetos.js";
 import AdicionarProjeto from "components/AdicionarProjeto.js";
+import MostrarProjeto from "components/MostrarProjeto.js";
 
 ReactDOM.render(
   <BrowserRouter>
@@ -26,6 +27,7 @@ ReactDOM.render(
       <Route path="/auth" component={Auth} />
       <Route path="/Projetos" component={Projetos} />
       <Route path="/AdicionarProjeto" component={AdicionarProjeto} />
+      <Route path="/MostrarProjeto" component={MostrarProjeto} />
       {/* add routes without layouts */}
       <Route path="/landing" exact component={Landing} />
       <Route path="/profile" exact component={Profile} />
