@@ -70,7 +70,8 @@ Use a better box model (opinionated).
 
 .btn-block {
   display: block;
-  width: 100%;
+  width: 50%;
+  margin: auto;
 }
 
 #grid {

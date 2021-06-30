@@ -14,11 +14,6 @@ class MostrarProjeto extends Component {
         <IndexNavbar />
 
         <div style={{ paddingTop: "75px" }}>
-          <Button
-            onClick={(event) => (window.location.href = "/AdicionarProjeto")}
-            text="Adicionar Projeto"
-          />
-
           <Grid item xs={12} md={3} lg={3} id="grid2">
             <Card style={{ width: "18rem", cursor: "pointer" }} id="cardTeste">
               <Card.Img

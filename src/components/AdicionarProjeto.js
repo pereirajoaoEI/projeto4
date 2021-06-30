@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import IndexNavBar from "./Navbars/IndexNavbar.js";
+import { Link } from "react-router-dom";
 
 const AdicionarProjeto = () => {
   const [nomeProjeto, setNomeProjeto] = useState("");
@@ -23,6 +24,8 @@ const AdicionarProjeto = () => {
       .catch((err) => {
         console.error(err);
       });
+
+    window.location.href = "/Projetos";
   };
 
   return (
