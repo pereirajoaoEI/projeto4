@@ -7,6 +7,7 @@ const AdicionarProjeto = () => {
   const [nomeProjeto, setNomeProjeto] = useState("");
   const [desc, setDesc] = useState("");
   const [prazo, setPrazo] = useState("");
+  const today = new Date();
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -36,6 +37,7 @@ const AdicionarProjeto = () => {
       <div style={{ paddingTop: "75px", margin: "auto", width: "50%" }}>
         <form className="add-form" onSubmit={onSubmit}>
           <div className="form-control">
+            <label style={{ fontSize: "50px" }}>Adicionar Projeto</label>
             <label>Nome Projeto</label>
             <input
               type="text"
