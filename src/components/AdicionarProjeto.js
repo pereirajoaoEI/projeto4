@@ -21,12 +21,10 @@ const AdicionarProjeto = () => {
 
     axios
       .post("http://localhost:8080/insert_requesito", dados)
-      .then(() => console.log(dados))
-      .catch((err) => {
-        console.error(err);
+      .then(function (response) {
+        alert("Inserido com sucesso!");
+        window.location = "/Projetos";
       });
-
-    window.location.href = "/Projetos";
   };
 
   return (

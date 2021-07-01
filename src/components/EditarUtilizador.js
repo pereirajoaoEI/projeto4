@@ -3,13 +3,16 @@ import axios from "axios";
 import IndexNavBar from "./Navbars/IndexNavbar.js";
 import { Link } from "react-router-dom";
 import { v4 as uuid } from "uuid";
+import { useEffect } from "react";
 
-const AdicionarUtilizador = () => {
+const EditarUtilizador = (props) => {
   const [utilizador, setUtilizador] = useState("");
   const [password, setPassword] = useState("");
   const [nomeCompleto, setNomeCompleto] = useState("");
   const [contacto, setContacto] = useState("");
   const [tipo, setTipo] = useState("");
+  const [idAntigo, setIdAntigo] = useState("");
+
   const options = [
     "Monday",
     "Tuesday",
@@ -19,12 +22,29 @@ const AdicionarUtilizador = () => {
     "Sunday",
   ];
 
+  useEffect(() => {
+    setUtilizador(props.location.param3);
+    setPassword(props.location.param4);
+    setNomeCompleto(props.location.param5);
+    setContacto(props.location.param6);
+    setTipo(props.location.param7);
+    setIdAntigo(props.location.param1);
+  }, []);
+
+  // const id_props = props.location.param1;
+  // const id_antigo_props = props.location.param2;
+  // const password_props = props.location.param4;
+  // const nomeCompleto_props = props.location.param5;
+  // const contacto_props = props.location.param6;
+  // const tipo_props = props.location.param7;
+  // const categoria_props = props.location.param8;
+
   const onSubmit = (e) => {
     e.preventDefault();
 
     const dados = {
       id: uuid(),
-      id_antigo: 0,
+      id_antigo: idAntigo,
       utilizador,
       password,
       nomeCompleto,
@@ -34,7 +54,7 @@ const AdicionarUtilizador = () => {
     axios
       .post("http://localhost:8080/insertUser", dados)
       .then(function (response) {
-        alert("Inserido com sucesso!");
+        alert("Editado com sucesso!");
         window.location = "/Utilizadores";
       });
   };
@@ -112,4 +132,4 @@ const AdicionarUtilizador = () => {
   );
 };
 
-export default AdicionarUtilizador;
+export default EditarUtilizador;
