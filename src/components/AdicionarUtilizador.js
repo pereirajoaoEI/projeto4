@@ -91,6 +91,7 @@ const AdicionarUtilizador = () => {
               onChange={(e) => setTipo(e.target.value)}
             >
               {" "}
+              <option >Escolha o utilizador</option>
               <option value="Administrador">Administrador</option>
               <option value="Gestor de Equipa">Gestor de Equipa</option>
               <option value="Developer">Developer</option>

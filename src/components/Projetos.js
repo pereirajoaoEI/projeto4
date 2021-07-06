@@ -18,7 +18,7 @@ class Projetos extends Component {
 
   componentDidMount = () => {
     try {
-      axios.get("http://localhost:8080/get_requesitos").then((response) => {
+      axios.get("http://localhost:8080/getProjetos").then((response) => {
         this.setState({
           dados: response.data,
         });
@@ -30,6 +30,7 @@ class Projetos extends Component {
 
   render() {
     const { dados } = this.state;
+    
     return (
       <div>
         <IndexNavbar />
@@ -43,13 +44,15 @@ class Projetos extends Component {
           <Grid container id="grid" spacing={3}>
             {dados.length > 0 ? (
               dados.map((el, index) => {
+                const newTo = {
+                  pathname: "/MostrarProjeto",
+                  param1: `${el.id}`,
+                  param2: `${el.nomeProjeto}`,
+                };
                 return (
                   <Grid item xs={12} md={3} lg={3} key={index} id="grid2">
                     <Link
-                      to={{
-                        pathname: "/MostrarProjeto",
-                        state: el.nomeProjeto, // your data array of objects
-                      }}
+                      to={newTo}
                     >
                       <Card
                         style={{ width: "18rem", cursor: "pointer" }}
@@ -69,16 +72,6 @@ class Projetos extends Component {
                           <Card.Title id="tituloTeste">
                             <h4>{el.desc}</h4>
                           </Card.Title>
-                          <Card.Title id="tituloTeste">
-                            <h4>{el.prazo}</h4>
-                          </Card.Title>
-                          <Card.Title id="tituloTeste">
-                            <h4>{el.categoria}</h4>
-                          </Card.Title>
-
-                          <br></br>
-
-                          <br></br>
                         </Card.Body>
                       </Card>
                     </Link>

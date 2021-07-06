@@ -23,6 +23,8 @@ import Utilizadores from "components/Utilizadores.js";
 import AdicionarUtilizador from "components/AdicionarUtilizador.js";
 import MostrarUtilizador from "components/MostrarUtilizador.js";
 import EditarUtilizador from "components/EditarUtilizador.js";
+import AdicionarRequisito from "components/AdicionarRequisito.js";
+import EditarRequisito from "components/EditarRequisito.js";
 
 ReactDOM.render(
   <BrowserRouter>
@@ -38,6 +40,8 @@ ReactDOM.render(
       <Route path="/AdicionarUtilizador" component={AdicionarUtilizador} />
       <Route path="/MostrarUtilizador" component={MostrarUtilizador} />
       <Route path="/EditarUtilizador" component={EditarUtilizador} />
+      <Route path="/AdicionarRequisito" component={AdicionarRequisito} />
+      <Route path="/EditarRequisito" component={EditarRequisito} />
       {/* add routes without layouts */}
       <Route path="/landing" exact component={Landing} />
       <Route path="/profile" exact component={Profile} />
