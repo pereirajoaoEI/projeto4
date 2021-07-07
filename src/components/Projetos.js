@@ -13,6 +13,7 @@ class Projetos extends Component {
 
     this.state = {
       dados: [],
+      dados2: [],
     };
   }
 
@@ -26,11 +27,31 @@ class Projetos extends Component {
     } catch (error) {
       console.error(error);
     }
+    try {
+      axios.get("http://localhost:8080/getProjetos").then((response) => {
+        this.setState({
+          dados2: response.data,
+        });
+      });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   render() {
     const { dados } = this.state;
-    
+    const { dados2 } = this.state;
+
+    const remove = (array1, array2) => {
+      for (var ar1 of array1) {
+        for (var ar2 of array2) {
+          if (ar1.id_antigo === ar2.id) {
+            array2.splice(array2.indexOf(ar2), 1);
+          }
+        }
+      }
+      return array2;
+    };
     return (
       <div>
         <IndexNavbar />
@@ -43,11 +64,16 @@ class Projetos extends Component {
 
           <Grid container id="grid" spacing={3}>
             {dados.length > 0 ? (
-              dados.map((el, index) => {
+              remove(dados, dados2).map((el, index) => {
                 const newTo = {
                   pathname: "/MostrarProjeto",
                   param1: `${el.id}`,
                   param2: `${el.nomeProjeto}`,
+                  param3: `${el.prazo}`,
+                  param4: `${el.gestor}`,
+                  param5: `${el.cliente}`,
+                  param6: `${el.desc}`,
+                  param7: `${el.equipa}`,
                 };
                 return (
                   <Grid item xs={12} md={3} lg={3} key={index} id="grid2">

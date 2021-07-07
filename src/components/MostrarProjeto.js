@@ -42,12 +42,41 @@ class MostrarProjeto extends Component {
     //const { state } = this.props.location;
     const id = this.props.location.param1;
     const nomeProjeto = this.props.location.param2;
-    const {dados} = this.state;
-    const {dados2} = this.state;
-    
+    const prazo = this.props.location.param3;
+    const gestor = this.props.location.param4;
+    const cliente = this.props.location.param5;
+    const descricao = this.props.location.param6;
+    const equipa = this.props.location.param7;
+    const { dados } = this.state;
+    const { dados2 } = this.state;
+
+    console.log(equipa);
+
     const newTo2 = {
       pathname: "/AdicionarRequisito",
       param1: `${id}`,
+    };
+
+    const newTo3 = {
+      pathname: "/EditarProjeto",
+      param1: `${id}`,
+      param2: `${nomeProjeto}`,
+      param3: `${prazo}`,
+      param4: `${gestor}`,
+      param5: `${cliente}`,
+      param6: `${descricao}`,
+      param7: `${equipa}`,
+    };
+
+    const newTo4 = {
+      pathname: "/DefinirEquipa",
+      param1: `${id}`,
+      param2: `${nomeProjeto}`,
+      param3: `${prazo}`,
+      param4: `${gestor}`,
+      param5: `${cliente}`,
+      param6: `${descricao}`,
+      param7: `${equipa}`,
     };
 
     const remove = (array1, array2) => {
@@ -60,40 +89,54 @@ class MostrarProjeto extends Component {
       }
       return array2;
     };
-    return(
+    return (
       <div>
         <IndexNavbar />
         <div style={{ paddingTop: "75px" }}>
           <Link to={newTo2}>
-              <Button text="Adicionar Requisito" />
+            <Button text="Adicionar Requisito" />
           </Link>
 
           {dados.length > 0 ? (
-              remove(dados, dados2).map((el, index) => {
-                const newTo = {
-                  pathname: "/EditarRequisito",
-                  param1: `${el.id}`,
-                  param2: `${el.descricao}`,
-                  param3: `${el.prioridade}`,
-                  param4: `${el.projeto}`,
-                };
-                
-                if(id == el.projeto){
+            remove(dados, dados2).map((el, index) => {
+              const newTo = {
+                pathname: "/EditarRequisito",
+                param1: `${el.id}`,
+                param2: `${el.descricao}`,
+                param3: `${el.prioridade}`,
+                param4: `${el.projeto}`,
+              };
+
+              if (id == el.projeto) {
                 return (
-                  <div>{el.descricao}
-                  <Link to={newTo}>
+                  <div>
+                    {el.descricao}
+                    <Link to={newTo}>
                       <Button text="Editar Requisito" />
-                  </Link>
+                    </Link>
                   </div>
                 );
-                }
-              })
-            ) : (
-              <div>RIP</div>
-            )}
+              }
+            })
+          ) : (
+            <div>Nao existem requisitos a mostrar</div>
+          )}
+        </div>
+          {equipa}
+        <div>
+          <Link to={newTo3}>
+            <Button text="Editar Projeto" />
+          </Link>
+        </div>
+
+        <div>
+          <Link to={newTo4}>
+            <Button text="Definir Equipa" />
+          </Link>
         </div>
       </div>
-    )}
+    );
+  }
 }
 
 export default withRouter(MostrarProjeto);

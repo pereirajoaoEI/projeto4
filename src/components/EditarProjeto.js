@@ -5,35 +5,46 @@ import { Link } from "react-router-dom";
 import { v4 as uuid } from "uuid";
 import { useEffect } from "react";
 
-const AdicionarProjeto = () => {
-  const [nomeProjeto, setNomeProjeto] = useState("");
-  const [desc, setDesc] = useState("");
+const EditarProjeto = (props) => {
+  const [nomeProjeto, setNome] = useState("");
+  const [id, setId] = useState("");
   const [prazo, setPrazo] = useState("");
-  const [cliente, setCliente] = useState("");
   const [gestor, setGestor] = useState("");
-  const today = new Date();
+  const [cliente, setCliente] = useState("");
   const [clientes, setClientes] = useState([]);
   const [gestores, setGestores] = useState([]);
+  const [desc, setDescricao] = useState([]);
+  const [equipa, setEquipa] = useState([]);
+
+  useEffect(() => {
+    setNome(props.location.param2);
+    setId(props.location.param1);
+    setPrazo(props.location.param3);
+    setGestor(props.location.param4);
+    setCliente(props.location.param5);
+    setDescricao(props.location.param6);
+    setEquipa(props.location.param7);
+  }, []);
 
   const onSubmit = (e) => {
     e.preventDefault();
 
     const dados = {
       id: uuid(),
-      id_antigo: 0,
+      id_antigo: id,
       nomeProjeto,
-      desc,
       prazo,
-      cliente,
       gestor,
-      equipa: [],
+      cliente,
+      desc,
+      equipa: [equipa],
       categoria: "projeto",
     };
-
+    
     axios
       .post("http://localhost:8080/insertProjeto", dados)
       .then(function (response) {
-        alert("Inserido com sucesso!");
+        alert("Editado com sucesso!");
         window.location = "/Projetos";
       });
   };
@@ -63,8 +74,6 @@ const AdicionarProjeto = () => {
     return response.data;
   };
 
-  console.log(clientes);
-
   return (
     <div>
       <div>
@@ -78,7 +87,7 @@ const AdicionarProjeto = () => {
             <input
               type="text"
               value={nomeProjeto}
-              onChange={(e) => setNomeProjeto(e.target.value)}
+              onChange={(e) => setNome(e.target.value)}
             ></input>
           </div>
           <div className="form-control">
@@ -86,7 +95,7 @@ const AdicionarProjeto = () => {
             <input
               type="text"
               value={desc}
-              onChange={(e) => setDesc(e.target.value)}
+              onChange={(e) => setDescricao(e.target.value)}
             ></input>
           </div>
 
@@ -144,4 +153,4 @@ const AdicionarProjeto = () => {
   );
 };
 
-export default AdicionarProjeto;
+export default EditarProjeto;
