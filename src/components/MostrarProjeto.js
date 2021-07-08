@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Card from "react-bootstrap/Card";
+import Table from "react-bootstrap/Table";
 import { Grid } from "@material-ui/core";
 import { withRouter } from "react-router-dom";
 import IndexNavbar from "./Navbars/IndexNavbar";
@@ -93,46 +94,86 @@ class MostrarProjeto extends Component {
       <div>
         <IndexNavbar />
         <div style={{ paddingTop: "75px" }}>
-          <Link to={newTo2}>
-            <Button text="Adicionar Requisito" />
-          </Link>
+          <div style={{ textAlign: "center" }}>
+            <div
+              style={{
+                border: "1px solid black",
+                display: "inline-block",
+                verticalAlign: "middle",
+                width: "50%",
+              }}
+            >
+              <b> Prazo: </b>
+              {prazo}
+              <br></br>
+              <b>Cliente:</b> {cliente}
+              <br></br>
+              <b>Gestor:</b> {gestor}
+              <br></br>
+              <Link to={newTo3}>
+                <Button text="Editar Projeto" />
+              </Link>
+            </div>
+            <div
+              style={{
+                border: "1px solid black",
+                display: "inline-block",
+                verticalAlign: "middle",
+                width: "50%",
+              }}
+            >
+              <Link to={newTo2}>
+                <Button text="Adicionar Requisito" />
+              </Link>
 
-          {dados.length > 0 ? (
-            remove(dados, dados2).map((el, index) => {
-              const newTo = {
-                pathname: "/EditarRequisito",
-                param1: `${el.id}`,
-                param2: `${el.descricao}`,
-                param3: `${el.prioridade}`,
-                param4: `${el.projeto}`,
-              };
+              {dados.length > 0 ? (
+                remove(dados, dados2).map((el, index) => {
+                  const newTo = {
+                    pathname: "/EditarRequisito",
+                    param1: `${el.id}`,
+                    param2: `${el.descricao}`,
+                    param3: `${el.prioridade}`,
+                    param4: `${el.projeto}`,
+                  };
 
-              if (id == el.projeto) {
-                return (
-                  <div>
-                    {el.descricao}
-                    <Link to={newTo}>
-                      <Button text="Editar Requisito" />
-                    </Link>
-                  </div>
-                );
-              }
-            })
-          ) : (
-            <div>Nao existem requisitos a mostrar</div>
-          )}
-        </div>
-          {equipa}
-        <div>
-          <Link to={newTo3}>
-            <Button text="Editar Projeto" />
-          </Link>
-        </div>
-
-        <div>
-          <Link to={newTo4}>
-            <Button text="Definir Equipa" />
-          </Link>
+                  if (id == el.projeto) {
+                    return (
+                      <div>
+                        <Link to={newTo}>
+                          <i class="fas fa-edit"></i>
+                        </Link>
+                        {el.descricao}
+                      </div>
+                    );
+                  }
+                })
+              ) : (
+                <div>Nao existem requisitos a mostrar</div>
+              )}
+            </div>
+          </div>
+          <div
+            style={{
+              width: "50%",
+              border: "1px solid black",
+            }}
+          >
+            <Link to={newTo4}>
+              <Button text="Definir Equipa" />
+            </Link>
+            <Table responsive>
+              <thead>
+                <tr>
+                  <th>Developer</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{equipa}</td>
+                </tr>
+              </tbody>
+            </Table>
+          </div>
         </div>
       </div>
     );
