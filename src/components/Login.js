@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 const Login = () => {
   const [utilizador, setUtilizador] = useState("");
   const [password, setPassword] = useState("");
+  const [tipo, setTipo] = useState("");
   const arrayDados = [];
 
   const onSubmit = async (e) => {
@@ -14,7 +15,6 @@ const Login = () => {
     await axios.get("http://localhost:8080/getUsers").then((response) => {
       for (let utilizadores of response.data) {
         arrayDados.push(utilizadores.utilizador, utilizadores.password);
-        console.log(arrayDados);
       }
     });
 
@@ -22,7 +22,7 @@ const Login = () => {
     const isInArray2 = arrayDados.indexOf(password) > -1;
     if (isInArray) {
       if (isInArray2) {
-        window.location = "/Projetos";
+        window.location = `/Projetos?utilizador=${utilizador}`;
       } else {
         alert("Login Incorreto!");
         window.location = "/Login";
@@ -31,18 +31,6 @@ const Login = () => {
       alert("Login Incorreto!");
       window.location = "/Login";
     }
-
-    // if (
-    //   utilizador === utilizadores.utilizador &&
-    //   password === utilizadores.password
-    // ) {
-    //   window.location.href = "/Projetos";
-    // } else {
-    //   alert("Login Incorreto!");
-    //   window.location.href = "/Login";
-    // }
-
-    //window.location.href = "/Projetos";
   };
 
   return (

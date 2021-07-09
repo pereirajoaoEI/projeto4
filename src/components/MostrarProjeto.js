@@ -48,6 +48,7 @@ class MostrarProjeto extends Component {
     const cliente = this.props.location.param5;
     const descricao = this.props.location.param6;
     const equipa = this.props.location.param7;
+    const utilizador = this.props.location.param8;
     const { dados } = this.state;
     const { dados2 } = this.state;
 
@@ -67,6 +68,7 @@ class MostrarProjeto extends Component {
       param5: `${cliente}`,
       param6: `${descricao}`,
       param7: `${equipa}`,
+      param8: `${utilizador}`,
     };
 
     const newTo4 = {

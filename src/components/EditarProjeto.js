@@ -15,6 +15,7 @@ const EditarProjeto = (props) => {
   const [gestores, setGestores] = useState([]);
   const [desc, setDescricao] = useState([]);
   const [equipa, setEquipa] = useState([]);
+  const [utilizador, setUtilizador] = useState([]);
 
   useEffect(() => {
     setNome(props.location.param2);
@@ -24,6 +25,7 @@ const EditarProjeto = (props) => {
     setCliente(props.location.param5);
     setDescricao(props.location.param6);
     setEquipa(props.location.param7);
+    setUtilizador(props.location.param8);
   }, []);
 
   const onSubmit = (e) => {
@@ -40,12 +42,12 @@ const EditarProjeto = (props) => {
       equipa: [equipa],
       categoria: "projeto",
     };
-    
+
     axios
       .post("http://localhost:8080/insertProjeto", dados)
       .then(function (response) {
         alert("Editado com sucesso!");
-        window.location = "/Projetos";
+        window.location = `/Projetos?utilizador=${utilizador}`;
       });
   };
 
@@ -145,7 +147,7 @@ const EditarProjeto = (props) => {
               ))}
             </select>
           </div>
-          
+
           <input type="submit" value="Guardar" className="btn btn-block" />
         </form>
       </div>
