@@ -22,7 +22,17 @@ const Login = () => {
     const isInArray2 = arrayDados.indexOf(password) > -1;
     if (isInArray) {
       if (isInArray2) {
-        window.location = `/Projetos?utilizador=${utilizador}`;
+        await axios.get("http://localhost:8080/getUsers").then((response) => {
+          for (let utilizadores of response.data) {
+            if (utilizadores.tipo === "Administrador") {
+              alert("Administrador");
+              window.location = `/Projetos?utilizador=${utilizador}`;
+            } else {
+              alert("Administrador");
+              window.location = `/ProjetosUtilizador?utilizador=${utilizador}`;
+            }
+          }
+        });
       } else {
         alert("Login Incorreto!");
         window.location = "/Login";

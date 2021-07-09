@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { stringify } from "postcss";
 
-class Projetos extends Component {
+class ProjetosUtilizador extends Component {
   constructor() {
     super();
 
@@ -72,13 +72,9 @@ class Projetos extends Component {
     };
     return (
       <div>
-        <IndexNavbar />
+        <GestorNavbar />
 
         <div style={{ paddingTop: "75px" }}>
-            <Button
-              onClick={(event) => (window.location.href = "/AdicionarProjeto")}
-              text="Adicionar Projeto"
-            />
           {utilizador}
           <h1> {tipo}</h1>
 
@@ -135,4 +131,4 @@ class Projetos extends Component {
   }
 }
 
-export default withRouter(Projetos);
+export default withRouter(ProjetosUtilizador);
