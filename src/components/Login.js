@@ -8,6 +8,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [tipo, setTipo] = useState("");
   const arrayDados = [];
+  var i = 0;
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -23,14 +24,19 @@ const Login = () => {
     if (isInArray) {
       if (isInArray2) {
         await axios.get("http://localhost:8080/getUsers").then((response) => {
-          for (let utilizadores of response.data) {
-            if (utilizadores.tipo === "Administrador") {
-              alert("Administrador");
-              window.location = `/Projetos?utilizador=${utilizador}`;
-            } else {
-              alert("Administrador");
-              window.location = `/ProjetosUtilizador?utilizador=${utilizador}`;
-            }
+          console.log(response.data);
+          console.log(response.data.length);
+          for (i; i < response.data.length; i++) {
+            if (response.data.[i].utilizador === utilizador && response.data.[i].password === password) {
+              if(response.data.[i].tipo === "Developer"){
+                window.location = `/ProjetosUtilizador?utilizador=${utilizador}`;
+                //console.log("Entra");
+              }
+              if(response.data.[i].tipo === "Administrador"){
+                //console.log("object")
+                window.location = `/Projetos?utilizador=${utilizador}`;
+              }
+            } 
           }
         });
       } else {
