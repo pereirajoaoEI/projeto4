@@ -4,20 +4,10 @@ import IndexNavBar from "./Navbars/IndexNavbar.js";
 import { Link } from "react-router-dom";
 import { v4 as uuid } from "uuid";
 
-const AdicionarUtilizador = () => {
-  const [utilizador, setUtilizador] = useState("");
-  const [password, setPassword] = useState("");
+const AdicionarCliente = () => {
   const [nomeCompleto, setNomeCompleto] = useState("");
   const [contacto, setContacto] = useState("");
-  const [tipo, setTipo] = useState("");
-  const options = [
-    "Monday",
-    "Tuesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-    "Sunday",
-  ];
+  const [empresa, setEmpresa] = useState("");
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -25,11 +15,9 @@ const AdicionarUtilizador = () => {
     const dados = {
       id: uuid(),
       id_antigo: 0,
-      utilizador,
-      password,
       nomeCompleto,
       contacto,
-      tipo,
+      tipo: "Cliente",
     };
     axios
       .post("http://localhost:8080/insertUser", dados)
@@ -47,7 +35,7 @@ const AdicionarUtilizador = () => {
       <div style={{ paddingTop: "75px", margin: "auto", width: "50%" }}>
         <form className="add-form" onSubmit={onSubmit}>
           <div className="form-control">
-            <label style={{ fontSize: "50px" }}>Adicionar Utilizador</label>
+            <label style={{ fontSize: "50px" }}>Adicionar Cliente</label>
             <label>Nome Completo</label>
             <input
               type="text"
@@ -55,23 +43,7 @@ const AdicionarUtilizador = () => {
               onChange={(e) => setNomeCompleto(e.target.value)}
             ></input>
           </div>
-          <div className="form-control">
-            <label>Utilizador</label>
-            <input
-              type="text"
-              value={utilizador}
-              onChange={(e) => setUtilizador(e.target.value)}
-            ></input>
-          </div>
 
-          <div className="form-control">
-            <label>Password</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            ></input>
-          </div>
           <div className="form-control">
             <label>Email</label>
             <input
@@ -80,21 +52,14 @@ const AdicionarUtilizador = () => {
               onChange={(e) => setContacto(e.target.value)}
             ></input>
           </div>
-          <div className="form-control">
-            <div style={{ paddingBottom: "7px" }}>
-              <label>Tipo</label>
-            </div>
 
-            <select
+          <div className="form-control">
+            <label>Empresa</label>
+            <input
               type="text"
-              value={tipo}
-              onChange={(e) => setTipo(e.target.value)}
-            >
-              {" "}
-              <option>Escolha o utilizador ‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎</option>
-              <option value="Administrador">Administrador</option>
-              <option value="Developer">Developer</option>
-            </select>
+              value={empresa}
+              onChange={(e) => setEmpresa(e.target.value)}
+            ></input>
           </div>
 
           {/* <Autocomplete
@@ -111,4 +76,4 @@ const AdicionarUtilizador = () => {
   );
 };
 
-export default AdicionarUtilizador;
+export default AdicionarCliente;

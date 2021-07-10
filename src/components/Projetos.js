@@ -75,16 +75,18 @@ class Projetos extends Component {
         <IndexNavbar />
 
         <div style={{ paddingTop: "75px" }}>
-            <Button
-              onClick={(event) => (window.location.href = "/AdicionarProjeto")}
-              text="Adicionar Projeto"
-            />
-          {utilizador}
-          <h1> {tipo}</h1>
+          <Button
+            onClick={(event) => (window.location.href = "/AdicionarProjeto")}
+            text="Adicionar Projeto"
+          />
+          {console.log(utilizador)}
+          {console.log(tipo)}
 
           <Grid container id="grid" spacing={3}>
             {dados.length > 0 ? (
               remove(dados, dados2).map((el, index) => {
+                console.log(el.gestor);
+                console.log(utilizador);
                 if (el.gestor === utilizador) {
                   const newTo = {
                     pathname: "/MostrarProjeto",
@@ -92,7 +94,6 @@ class Projetos extends Component {
                     param2: `${el.nomeProjeto}`,
                     param3: `${el.prazo}`,
                     param4: `${el.gestor}`,
-                    param5: `${el.cliente}`,
                     param6: `${el.desc}`,
                     param7: `${el.equipa}`,
                     param8: `${utilizador}`,

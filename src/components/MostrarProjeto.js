@@ -57,6 +57,7 @@ class MostrarProjeto extends Component {
     const newTo2 = {
       pathname: "/AdicionarRequisito",
       param1: `${id}`,
+      param2: `${utilizador}`,
     };
 
     const newTo3 = {
@@ -65,7 +66,6 @@ class MostrarProjeto extends Component {
       param2: `${nomeProjeto}`,
       param3: `${prazo}`,
       param4: `${gestor}`,
-      param5: `${cliente}`,
       param6: `${descricao}`,
       param7: `${equipa}`,
       param8: `${utilizador}`,
@@ -77,7 +77,6 @@ class MostrarProjeto extends Component {
       param2: `${nomeProjeto}`,
       param3: `${prazo}`,
       param4: `${gestor}`,
-      param5: `${cliente}`,
       param6: `${descricao}`,
       param7: `${equipa}`,
     };
@@ -107,8 +106,6 @@ class MostrarProjeto extends Component {
             >
               <b> Prazo: </b>
               {prazo}
-              <br></br>
-              <b>Cliente:</b> {cliente}
               <br></br>
               <b>Gestor:</b> {gestor}
               <br></br>
@@ -140,7 +137,13 @@ class MostrarProjeto extends Component {
 
                   if (id == el.projeto) {
                     return (
-                      <div>
+                      <div style={{ border: "1px solid black" }}>
+                        <b>Stakeholder: </b>
+                        {el.cliente}
+                        <br></br>
+                        <b>Autor: </b>
+                        {el.utilizador}
+                        <br></br>
                         <Link to={newTo}>
                           <i class="fas fa-edit"></i>
                         </Link>

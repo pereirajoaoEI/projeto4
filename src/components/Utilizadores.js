@@ -61,6 +61,10 @@ class Utilizadores extends Component {
             onClick={(event) => (window.location.href = "/AdicionarUtilizador")}
             text="Adicionar Utilizador"
           />
+          <Button
+            onClick={(event) => (window.location.href = "/AdicionarCliente")}
+            text="Adicionar Cliente"
+          />
 
           <Grid container id="grid" spacing={3}>
             {remove(dados, dados2).map((el, index) => {

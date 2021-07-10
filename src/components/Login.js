@@ -27,16 +27,19 @@ const Login = () => {
           console.log(response.data);
           console.log(response.data.length);
           for (i; i < response.data.length; i++) {
-            if (response.data.[i].utilizador === utilizador && response.data.[i].password === password) {
-              if(response.data.[i].tipo === "Developer"){
+            if (
+              response.data[i].utilizador === utilizador &&
+              response.data[i].password === password
+            ) {
+              if (response.data[i].tipo === "Developer") {
                 window.location = `/ProjetosUtilizador?utilizador=${utilizador}`;
                 //console.log("Entra");
               }
-              if(response.data.[i].tipo === "Administrador"){
+              if (response.data[i].tipo === "Administrador") {
                 //console.log("object")
                 window.location = `/Projetos?utilizador=${utilizador}`;
               }
-            } 
+            }
           }
         });
       } else {

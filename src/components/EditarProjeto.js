@@ -52,23 +52,13 @@ const EditarProjeto = (props) => {
   };
 
   useEffect(() => {
-    const getEvents = async () => {
-      const events = await fetchEvents();
-      setClientes(events);
-    };
     const getGestores = async () => {
       const events = await fetchGestores();
       setGestores(events);
     };
-    getEvents();
+
     getGestores();
   }, []);
-
-  const fetchEvents = async () => {
-    // const misId = { misId: mis.id };
-    const response = await axios.get("http://localhost:8080/getClientes");
-    return response.data;
-  };
 
   const fetchGestores = async () => {
     // const misId = { misId: mis.id };
@@ -101,34 +91,7 @@ const EditarProjeto = (props) => {
             ></input>
           </div>
 
-          <div className="form-control form-control-check">
-            <label>Prazo</label>
-            <input
-              type="date"
-              value={prazo}
-              onChange={(e) => setPrazo(e.target.value)}
-            ></input>
-          </div>
-
           <div className="form-control">
-            <div style={{ paddingBottom: "7px" }}>
-              <label>Cliente</label>
-            </div>
-
-            <select
-              type="text"
-              value={cliente}
-              onChange={(e) => setCliente(e.target.value)}
-            >
-              {" "}
-              <option>Escolha o cliente</option>
-              {clientes.map((cli) => (
-                <option key={cli.id} value={cli.nomeCompleto}>
-                  {cli.nomeCompleto}
-                </option>
-              ))}
-            </select>
-
             <div style={{ paddingBottom: "7px" }}>
               <label>Gestor de Equipa</label>
             </div>
@@ -139,13 +102,24 @@ const EditarProjeto = (props) => {
               onChange={(e) => setGestor(e.target.value)}
             >
               {" "}
-              <option>Escolha o Gestor de Equipa</option>
+              <option>
+                Escolha o Gestor de Equipa ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎{" "}
+              </option>
               {gestores.map((ges) => (
                 <option key={ges.id} value={ges.nomeCompleto}>
                   {ges.nomeCompleto}
                 </option>
               ))}
             </select>
+          </div>
+
+          <div className="form-control form-control-check">
+            <label>Prazo</label>
+            <input
+              type="date"
+              value={prazo}
+              onChange={(e) => setPrazo(e.target.value)}
+            ></input>
           </div>
 
           <input type="submit" value="Guardar" className="btn btn-block" />
