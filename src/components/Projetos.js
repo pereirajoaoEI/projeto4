@@ -72,13 +72,13 @@ class Projetos extends Component {
     };
     return (
       <div>
-        <IndexNavbar />
+        <IndexNavbar expression={utilizador}/>
 
-        <h1 style={{paddingTop: "75px", fontSize: "30px"}}>Bem vindo {utilizador}</h1>
+        <h1 style={{paddingTop: "75px", fontSize: "30px", textAlign: "center", fontWeight: "bold"}}>Bem vindo {utilizador}</h1>
 
-        <div style={{ paddingTop: "75px", textAlign: "center"}}>
+        <div style={{ padding: "20px", textAlign: "center", marginBottom:"20px"}}>
           <Button
-            onClick={(event) => (window.location.href = "/AdicionarProjeto")}
+            onClick={(event) => (window.location.href = `/AdicionarProjeto?utilizador=${utilizador}`)}
             text="Adicionar Projeto"
           />
 
@@ -100,7 +100,7 @@ class Projetos extends Component {
                 };
 
                 return (
-                  <Grid item xs={12} md={3} lg={3} key={index} id="grid2">
+                  <Grid item xs={12} md={1} lg={2} key={index} id="grid2">
                     <Link to={newTo}>
                       <Card
                         style={{ width: "18rem", cursor: "pointer" }}
@@ -110,7 +110,7 @@ class Projetos extends Component {
                           variant="top"
                           id="imageTeste"
                           src={
-                            "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Noun_Project_projects_icon_1327109_cc.svg/1024px-Noun_Project_projects_icon_1327109_cc.svg.png"
+                            "https://icon-library.com/images/project-icon/project-icon-10.jpg"
                           }
                         />
                         <Card.Body>

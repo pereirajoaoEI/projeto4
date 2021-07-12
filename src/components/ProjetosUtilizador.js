@@ -77,7 +77,7 @@ class ProjetosUtilizador extends Component {
         <h1 style={{paddingTop: "75px", fontSize: "30px", textAlign: "center", fontWeight: "bold"}}>Bem vindo {utilizador}</h1>
 
         <div style={{ paddingTop: "75px" }}>
-          <Grid container id="grid" spacing={3}>
+          <Grid container id="grid" spacing={7}>
             {dados.length > 0 ? (
               remove(dados, dados2).map((el, index) => {
                 if (el.gestor === utilizador || el.equipa.includes(utilizador)) {
@@ -94,7 +94,7 @@ class ProjetosUtilizador extends Component {
                     param9: `${tipo}`,
                   };
                   return (
-                    <Grid item xs={12} md={3} lg={3} key={index} id="grid2">
+                    <Grid item xs={12} md={3} lg={2} key={index} id="grid2">
                       <Link to={newTo}>
                         <Card
                           style={{ width: "18rem", cursor: "pointer" }}

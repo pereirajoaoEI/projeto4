@@ -52,35 +52,6 @@ class MostrarProjeto extends Component {
     const { dados } = this.state;
     const { dados2 } = this.state;
 
-    console.log(equipa);
-
-    const newTo2 = {
-      pathname: "/AdicionarRequisito",
-      param1: `${id}`,
-      param2: `${utilizador}`,
-    };
-
-    const newTo3 = {
-      pathname: "/EditarProjeto",
-      param1: `${id}`,
-      param2: `${nomeProjeto}`,
-      param3: `${prazo}`,
-      param4: `${gestor}`,
-      param6: `${descricao}`,
-      param7: `${equipa}`,
-      param8: `${utilizador}`,
-    };
-
-    const newTo4 = {
-      pathname: "/DefinirEquipa",
-      param1: `${id}`,
-      param2: `${nomeProjeto}`,
-      param3: `${prazo}`,
-      param4: `${gestor}`,
-      param6: `${descricao}`,
-      param7: `${equipa}`,
-    };
-
     const remove = (array1, array2) => {
       for (var ar1 of array1) {
         for (var ar2 of array2) {
@@ -93,77 +64,77 @@ class MostrarProjeto extends Component {
     };
     return (
       <div>
-        <IndexNavbar />
-        <div style={{ paddingTop: "75px" }}>
+        <IndexNavbar expression={utilizador}/>
+        <div
+          style={{
+            paddingTop: "75px",
+            paddingRight: "16px",
+            paddingLeft: "16px",
+            paddingBottom: "16px",
+          }}
+        >
           <div style={{ textAlign: "center" }}>
             <div
               style={{
-                border: "1px solid black",
+                //border: "1px solid black",
                 display: "inline-block",
-                verticalAlign: "middle",
                 width: "50%",
               }}
             >
-              <b> Prazo: </b>
-              {prazo}
+              <h1
+                style={{
+                  fontSize: "22.5px",
+                }}
+              >
+                Detalhes do Projeto:
+              </h1>
               <br></br>
-              <b>Gestor:</b> {gestor}
+              <img
+                src="https://icon-library.com/images/project-icon/project-icon-10.jpg"
+                alt="Imagem"
+                style={{
+                  width: "125px",
+                  height: "125px",
+                  marginLeft: "auto",
+                  marginRight: "auto",
+                }}
+              ></img>
+              <b> Titulo: </b> {nomeProjeto}
               <br></br>
-              <Link to={newTo3}>
-                <Button text="Editar Projeto" />
-              </Link>
-            </div>
-            <div
-              style={{
-                border: "1px solid black",
-                display: "inline-block",
-                verticalAlign: "middle",
-                width: "50%",
-              }}
-            >
-              <Link to={newTo2}>
-                <Button text="Adicionar Requisito" />
-              </Link>
-
-              {dados.length > 0 ? (
-                remove(dados, dados2).map((el, index) => {
-                  const newTo = {
-                    pathname: "/EditarRequisito",
-                    param1: `${el.id}`,
-                    param2: `${el.descricao}`,
-                    param3: `${el.prioridade}`,
-                    param4: `${el.projeto}`,
-                  };
-
-                  if (id == el.projeto) {
-                    return (
-                      <div style={{ border: "1px solid black" }}>
-                        <b>Stakeholder: </b>
-                        {el.cliente}
-                        <br></br>
-                        <b>Autor: </b>
-                        {el.utilizador}
-                        <br></br>
-                        <Link to={newTo}>
-                          <i class="fas fa-edit"></i>
-                        </Link>
-                        {el.descricao}
-                      </div>
-                    );
-                  }
-                })
-              ) : (
-                <div>Nao existem requisitos a mostrar</div>
-              )}
-            </div>
-          </div>
-          <div
-            style={{
-              width: "50%",
-              border: "1px solid black",
-            }}
-          >
-            <Table responsive>
+              <b> Descrição: </b> {descricao}
+              <br></br>
+              <b> Prazo: </b> {prazo}
+              <br></br>
+              <br></br>
+              <br></br>
+              <br></br>
+              <br></br>
+              <h1
+                style={{
+                  fontSize: "22.5px",
+                }}
+              >
+                Equipa Responsável:
+              </h1>
+              <br></br>
+              <img
+                src="https://cdn.pixabay.com/photo/2018/04/18/18/56/user-3331257_960_720.png"
+                alt="Imagem"
+                style={{
+                  width: "125px",
+                  height: "125px",
+                  marginLeft: "auto",
+                  marginRight: "auto",
+                }}
+              ></img>
+              <b> Gestor: </b> {gestor}
+              <br></br>
+              <b> Equipa: </b> {equipa}
+              <br></br>
+              {/* <Link to={newTo4}>
+                <Button text="Definir Equipa" />
+              </Link> */}
+              {/* <Table responsive>
               <thead>
                 <tr>
                   <th>Developer</th>
@@ -174,7 +145,67 @@ class MostrarProjeto extends Component {
                   <td>{equipa}</td>
                 </tr>
               </tbody>
-            </Table>
+            </Table>  */}
+            </div>
+
+            {/* EDITAR REQUiSITOS */}
+
+            <div
+              style={{
+                //borderLeft: "1px solid black",
+                display: "inline-block",
+                verticalAlign: "top",
+                width: "50%",
+                height: "100%",
+              }}
+            >
+              <h1
+                style={{
+                  fontSize: "22.5px",
+                }}
+              >
+                Requisitos do Projeto:
+              </h1>
+
+              {/* <Link to={newTo2}>
+                <Button text="Adicionar Requisito" />
+              </Link> */}
+
+              {dados.length > 0 ? (
+                remove(dados, dados2).map((el, index) => {
+                  if (id == el.projeto) {
+                    return (
+                      <div
+                        style={{
+                          borderRadius: "50px",
+                          border: " 1px solid black",
+                          padding: "10px",
+                          marginTop: "5px",
+                        }}
+                      >
+                        <b>Stakeholder: </b>
+                        {el.cliente}
+                        <br></br>
+                        <b>Autor: </b>
+                        {el.utilizador}
+                        <br></br>
+                        <b>Estado: </b>
+                        {el.estado}
+                        <br></br>
+                        <div>
+                          <b>Estado: </b> {el.descricao}
+                          {/* <Link paddinfleft="5px" to={newTo}>
+                            <i class="fas fa-edit"></i>
+                          </Link> */}
+                        </div>
+                      </div>
+                    );
+                  }
+                })
+              ) : (
+                <div>Nao existem requisitos a mostrar</div>
+              )}
+            </div>
           </div>
         </div>
       </div>

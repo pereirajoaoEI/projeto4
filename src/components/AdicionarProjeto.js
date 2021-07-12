@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { v4 as uuid } from "uuid";
 import { useEffect } from "react";
 
-const AdicionarProjeto = () => {
+const AdicionarProjeto = (props) => {
   const [nomeProjeto, setNomeProjeto] = useState("");
   const [desc, setDesc] = useState("");
   const [prazo, setPrazo] = useState("");
@@ -13,6 +13,10 @@ const AdicionarProjeto = () => {
   const [gestor, setGestor] = useState("");
   const today = new Date();
   const [gestores, setGestores] = useState([]);
+  const [search, setSearch] = useState("");
+
+  const params = new URLSearchParams(search);
+  const utilizador = params.get("utilizador");
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -32,7 +36,7 @@ const AdicionarProjeto = () => {
       .post("http://localhost:8080/insertProjeto", dados)
       .then(function (response) {
         alert("Inserido com sucesso!");
-        window.location = "/Projetos";
+        window.location = `/Projetos?utilizador=${utilizador}`;
       });
   };
 
@@ -41,7 +45,7 @@ const AdicionarProjeto = () => {
       const events = await fetchGestores();
       setGestores(events);
     };
-
+    setSearch(props.location.search);
     getGestores();
   }, []);
 
@@ -53,7 +57,7 @@ const AdicionarProjeto = () => {
   return (
     <div>
       <div>
-        <IndexNavBar />
+        <IndexNavBar expression={utilizador}/>
       </div>
       <div style={{ paddingTop: "75px", margin: "auto", width: "50%" }}>
         <form className="add-form" onSubmit={onSubmit}>

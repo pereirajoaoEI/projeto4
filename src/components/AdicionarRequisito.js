@@ -29,7 +29,7 @@ const AdicionarRequisito = (props) => {
       cliente,
       projeto: id,
       categoria: "requisito",
-      estado: "Programado",
+      estado: "Backlog",
     };
     axios
       .post("http://localhost:8080/insertRequisito", dados)
@@ -83,7 +83,7 @@ const AdicionarRequisito = (props) => {
                   onChange={(e) => setPrioridade(e.target.value)}
                 >
                   {" "}
-                  <option>Escolha a prioridade ‎‏‏‎‎</option>
+                  <option>Escolha a prioridade ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎‎</option>
                   <option value="Baixa">Baixa</option>
                   <option value="Media">Média</option>
                   <option value="Alta">Alta</option>

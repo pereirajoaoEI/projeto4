@@ -3,8 +3,9 @@ import axios from "axios";
 import IndexNavBar from "./Navbars/IndexNavbar.js";
 import { Link } from "react-router-dom";
 import { v4 as uuid } from "uuid";
+import { useEffect } from "react";
 
-const AdicionarUtilizador = () => {
+const AdicionarUtilizador = (props) => {
   const [utilizador, setUtilizador] = useState("");
   const [password, setPassword] = useState("");
   const [nomeCompleto, setNomeCompleto] = useState("");
@@ -18,6 +19,14 @@ const AdicionarUtilizador = () => {
     "Saturday",
     "Sunday",
   ];
+  const [search, setSearch] = useState("");
+
+  useEffect(() => {
+    setSearch(props.location.search);
+  }, []);
+
+  const params = new URLSearchParams(search);
+  const utilizadorParam = params.get("utilizador");
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -35,14 +44,14 @@ const AdicionarUtilizador = () => {
       .post("http://localhost:8080/insertUser", dados)
       .then(function (response) {
         alert("Inserido com sucesso!");
-        window.location = "/Utilizadores";
+        window.location = `/Utilizadores?utilizador=${utilizadorParam}`;
       });
   };
 
   return (
     <div>
       <div>
-        <IndexNavBar />
+        <IndexNavBar expression={utilizadorParam}/>
       </div>
       <div style={{ paddingTop: "75px", margin: "auto", width: "50%" }}>
         <form className="add-form" onSubmit={onSubmit}>

@@ -84,7 +84,7 @@ const EditarRequisito = (props) => {
                   onChange={(e) => setPrioridade(e.target.value)}
                 >
                   {" "}
-                  <option>Escolha a prioridade ‎‏‏‎‎</option>
+                  <option>Escolha a prioridade‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎  ‎‏‏‎‎</option>
                   <option value="Baixa">Baixa</option>
                   <option value="Media">Média</option>
                   <option value="Alta">Alta</option>
@@ -103,9 +103,9 @@ const EditarRequisito = (props) => {
                   onChange={(e) => setEstado(e.target.value)}
                 >
                   {" "}
-                  <option>Escolha o Estado ‎‏‏‎‎</option>
-                  <option value="Desenvolvimento">Em Desenvolvimento</option>
-                  <option value="Conluido">Concluido</option>
+                  <option>Escolha o Estado‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎  ‎‏‏‎‎</option>
+                  <option value="Desenvolvimento">Em Desenvolvimento‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ </option>
+                  <option value="Concluido">Concluido</option>
                   <option value="Cancelado">Cancelado</option>
                 </select>
             </div>

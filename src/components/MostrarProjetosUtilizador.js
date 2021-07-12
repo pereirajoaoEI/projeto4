@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import Card from "react-bootstrap/Card";
 import Table from "react-bootstrap/Table";
-import { Grid } from "@material-ui/core";
+import { Container, Grid } from "@material-ui/core";
 import { withRouter } from "react-router-dom";
 import GestorNavbar from "./Navbars/GestorNavbar";
 import Button from "./Button.js";
@@ -84,11 +84,18 @@ class MostrarProjetosUtilizador extends Component {
       <div>
         <GestorNavbar expression={utilizador} />
 
-        <div style={{ paddingTop: "75px" }}>
-          <div style={{ textAlign: "center"}}>
+        <div
+          style={{
+            paddingTop: "75px",
+            paddingRight: "16px",
+            paddingLeft: "16px",
+            paddingBottom: "16px",
+          }}
+        >
+          <div style={{ textAlign: "center" }}>
             <div
               style={{
-                border: "1px solid black",
+                //border: "1px solid black",
                 display: "inline-block",
                 width: "50%",
               }}
@@ -100,22 +107,67 @@ class MostrarProjetosUtilizador extends Component {
               >
                 Detalhes do Projeto:
               </h1>
+              <br></br>
+              <img
+                src="https://icon-library.com/images/project-icon/project-icon-10.jpg"
+                alt="Imagem"
+                style={{
+                  width: "125px",
+                  height: "125px",
+                  marginLeft: "auto",
+                  marginRight: "auto",
+                }}
+              ></img>
+              <b> Titulo: </b> {nomeProjeto}
+              <br></br>
               <b> Descrição: </b> {descricao}
               <br></br>
               <b> Prazo: </b> {prazo}
               <br></br>
-              <b>Gestor:</b> {gestor}
               <br></br>
+              <br></br>
+              <br></br>
+              <br></br>
+              <h1
+                style={{
+                  fontSize: "22.5px",
+                }}
+              >
+                Equipa Responsável:
+              </h1>
+              <br></br>
+              <img
+                src="https://cdn.pixabay.com/photo/2018/04/18/18/56/user-3331257_960_720.png"
+                alt="Imagem"
+                style={{
+                  width: "125px",
+                  height: "125px",
+                  marginLeft: "auto",
+                  marginRight: "auto",
+                }}
+              ></img>
+              <b> Gestor: </b> {gestor}
+              <br></br>
+              <b> Equipa: </b> {equipa}
+              <br></br>
+              {gestor === utilizador ? (
+                <Link to={newTo4}>
+                  <Button text="Definir Equipa" />
+                </Link>
+              ) : (
+                <div> </div>
+              )}
+              
             </div>
 
             {/* EDITAR REQUiSITOS */}
 
             <div
               style={{
-                border: "1px solid black",
                 display: "inline-block",
-                verticalAlign: "middle",
+                verticalAlign: "top",
                 width: "50%",
+                height: "100%",
               }}
             >
               <h1
@@ -128,7 +180,7 @@ class MostrarProjetosUtilizador extends Component {
 
               <Link to={newTo2}>
                 <Button text="Adicionar Requisito" />
-              </Link> 
+              </Link>
 
               {dados.length > 0 ? (
                 remove(dados, dados2).map((el, index) => {
@@ -145,22 +197,31 @@ class MostrarProjetosUtilizador extends Component {
 
                   if (id == el.projeto) {
                     return (
-                      <div style={{borderRadius: "50px", border:" 1px solid black", padding:"10px"}}>
-                        <b>Stakeholder: </b>
-                        {el.cliente}
-                        <br></br>
-                        <b>Autor: </b>
-                        {el.utilizador}
-                        <br></br>
-                        <b>Estado: </b>
-                        {el.estado}
-                        <br></br> 
-                        <div>
-                          {el.descricao}
-                          <Link paddinfleft="5px" to={newTo}>
-                            <i class="fas fa-edit"></i>
-                          </Link>
-                        </div>
+                      <div>
+                        <Link paddinfleft="5px" to={newTo}>
+                          <div
+                            style={{
+                              borderRadius: "50px",
+                              border: " 1px solid black",
+                              padding: "10px",
+                              marginTop: "5px",
+                              backgroundColor: el.estado === "Backlog" ? "#666699" : el.estado === "Desenvolvimento" ? "#0066ff" : el.estado === "Concluido" ? "#00cc00" : el.estado === "Cancelado" ? "#ff1a1a" : "#ffffff",
+                            }}
+                          >
+                            <b>Stakeholder: </b>
+                            {el.cliente}
+                            <br></br>
+                            <b>Autor: </b>
+                            {el.utilizador}
+                            <br></br>
+                            <b>Estado: </b>
+                            {el.estado}
+                            <br></br>
+                            <div>
+                              <b>Descrição: </b> {el.descricao}
+                            </div>
+                          </div>
+                        </Link>
                       </div>
                     );
                   }
@@ -169,38 +230,6 @@ class MostrarProjetosUtilizador extends Component {
                 <div>Nao existem requisitos a mostrar</div>
               )}
             </div>
-
-          </div>
-
-          {/* Equipa */}
-
-          <div
-            style={{
-              width: "50%",
-              //border: "1px solid black",
-              textAlign: "center",
-            }}
-          >
-            {gestor === utilizador ? (
-              <Link to={newTo4}>
-                <Button text="Definir Equipa" />
-              </Link>
-            ) : (
-              <div> </div>
-            )}
-
-            <Table responsive>
-              <thead>
-                <tr>
-                  <th>Developer</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>{equipa}</td>
-                </tr>
-              </tbody>
-            </Table>
           </div>
         </div>
       </div>

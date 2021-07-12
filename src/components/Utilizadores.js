@@ -41,6 +41,9 @@ class Utilizadores extends Component {
   render() {
     const { dados } = this.state;
     const { dados2 } = this.state;
+    const search = this.props.location.search;
+    const params = new URLSearchParams(search);
+    const utilizador = params.get("utilizador");
 
     const remove = (array1, array2) => {
       for (var ar1 of array1) {
@@ -54,22 +57,22 @@ class Utilizadores extends Component {
     };
     return (
       <div>
-        <IndexNavbar />
+        <IndexNavbar expression={utilizador}/>
 
         <div style={{ paddingTop: "75px" }}>
           <Button
-            onClick={(event) => (window.location.href = "/AdicionarUtilizador")}
+            onClick={(event) => (window.location = `/AdicionarUtilizador?utilizador=${utilizador}`)}
             text="Adicionar Utilizador"
           />
           <Button
-            onClick={(event) => (window.location.href = "/AdicionarCliente")}
+            onClick={(event) => (window.location = `/AdicionarCliente?utilizador=${utilizador}`)}
             text="Adicionar Cliente"
           />
 
           <Grid container id="grid" spacing={3}>
             {remove(dados, dados2).map((el, index) => {
               const newTo = {
-                pathname: "/MostrarUtilizador",
+                pathname: "/EditarUtilizador",
                 param1: `${el.id}`,
                 param2: `${el.id_antigo}`,
                 param3: `${el.utilizador}`,
@@ -78,10 +81,11 @@ class Utilizadores extends Component {
                 param6: `${el.contacto}`,
                 param7: `${el.tipo}`,
                 param8: `${el.categoria}`,
+                param9: `${utilizador}`,
               };
 
               return (
-                <Grid item xs={12} md={3} lg={3} key={index} id="grid2">
+                <Grid item xs={12} md={3} lg={2} key={index} id="grid2">
                   <Link to={newTo}>
                     <Card
                       style={{ width: "18rem", cursor: "pointer" }}
@@ -106,8 +110,8 @@ class Utilizadores extends Component {
                         </Card.Title>
                         <Card.Title id="tituloTeste">
                           <h4>{el.tipo}</h4>
+                          <br></br>
                         </Card.Title>
-
                         <br></br>
 
                         <br></br>
