@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import IndexNavBar from "./Navbars/IndexNavbar.js";
+import GestorNavBar from "./Navbars/GestorNavbar.js";
 import { Link } from "react-router-dom";
 import { v4 as uuid } from "uuid";
 import { useEffect } from "react";
@@ -15,6 +15,7 @@ const DefinirEquipa = (props) => {
   const [desc, setDescricao] = useState([]);
   const [equipa, setEquipa] = useState([]);
   const [developers, setDevelopers] = useState([]);
+  const [utilizador, setUtilizador] = useState([]);
 
   useEffect(() => {
     setNome(props.location.param2);
@@ -23,7 +24,7 @@ const DefinirEquipa = (props) => {
     setGestor(props.location.param4);
     setCliente(props.location.param5);
     setDescricao(props.location.param6);
-    //setEquipa(props.location.param7);
+    setUtilizador(props.location.param8);
   }, []);
 
   const onSubmit = (e) => {
@@ -45,7 +46,7 @@ const DefinirEquipa = (props) => {
       .post("http://localhost:8080/insertProjeto", dados)
       .then(function (response) {
         alert("Editado com sucesso!");
-        window.location = "/Projetos";
+        window.location = `/ProjetosUtilizador?utilizador=${utilizador}`;
       });
   };
 
@@ -66,34 +67,38 @@ const DefinirEquipa = (props) => {
   return (
     <div>
       <div>
-        <IndexNavBar />
+        <GestorNavBar />
       </div>
       <div style={{ paddingTop: "75px", margin: "auto", width: "50%" }}>
         <form className="add-form" onSubmit={onSubmit}>
           <div className="form-control">
             <label style={{ fontSize: "50px" }}>Membros da Equipa</label>
             <div style={{ width: "5%" }}>
-              {developers.map((dev) => (
-                <div>
-                  <div>
-                    <h4 for="scales">{dev.nomeCompleto}</h4>
-                  </div>
-                  <div>
-                    <input
-                      type="checkbox"
-                      key={dev.id}
-                      value={dev.nomeCompleto}
-                      onChange={(e) => {
-                        if (e.target.checked) {
-                          setEquipa([...equipa, e.target.value]);
-                        } else {
-                          equipa.splice(equipa.indexOf(e.target.value), 1);
-                        }
-                      }}
-                    />
-                  </div>
-                </div>
-              ))}
+              {developers.map((dev) => {
+                if (dev.nomeCompleto != utilizador) {
+                  return(
+                    <div>
+                      <div>
+                        <h4 for="scales">{dev.nomeCompleto}</h4>
+                      </div>
+                      <div>
+                        <input
+                          type="checkbox"
+                          key={dev.id}
+                          value={dev.nomeCompleto}
+                          onChange={(e) => {
+                            if (e.target.checked) {
+                              setEquipa([...equipa, e.target.value]);
+                            } else {
+                              equipa.splice(equipa.indexOf(e.target.value), 1);
+                            }
+                          }}
+                        />
+                      </div>
+                    </div>
+                  );
+                } 
+              })}
               {/* <label for="scales">{developers.nomeCompleto}</label> */}
               {/* <input type="checkbox" id="scales" name="scales" /> */}
             </div>

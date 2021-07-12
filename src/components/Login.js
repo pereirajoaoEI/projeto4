@@ -21,6 +21,7 @@ const Login = () => {
 
     const isInArray = arrayDados.indexOf(utilizador) > -1;
     const isInArray2 = arrayDados.indexOf(password) > -1;
+
     if (isInArray) {
       if (isInArray2) {
         await axios.get("http://localhost:8080/getUsers").then((response) => {

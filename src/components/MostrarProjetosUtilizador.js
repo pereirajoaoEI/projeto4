@@ -4,11 +4,11 @@ import Card from "react-bootstrap/Card";
 import Table from "react-bootstrap/Table";
 import { Grid } from "@material-ui/core";
 import { withRouter } from "react-router-dom";
-import IndexNavbar from "./Navbars/IndexNavbar";
+import GestorNavbar from "./Navbars/GestorNavbar";
 import Button from "./Button.js";
 import { Link } from "react-router-dom";
 
-class MostrarProjeto extends Component {
+class MostrarProjetosUtilizador extends Component {
   constructor() {
     super();
 
@@ -60,17 +60,6 @@ class MostrarProjeto extends Component {
       param2: `${utilizador}`,
     };
 
-    const newTo3 = {
-      pathname: "/EditarProjeto",
-      param1: `${id}`,
-      param2: `${nomeProjeto}`,
-      param3: `${prazo}`,
-      param4: `${gestor}`,
-      param6: `${descricao}`,
-      param7: `${equipa}`,
-      param8: `${utilizador}`,
-    };
-
     const newTo4 = {
       pathname: "/DefinirEquipa",
       param1: `${id}`,
@@ -79,6 +68,7 @@ class MostrarProjeto extends Component {
       param4: `${gestor}`,
       param6: `${descricao}`,
       param7: `${equipa}`,
+      param8: `${utilizador}`,
     };
 
     const remove = (array1, array2) => {
@@ -93,7 +83,7 @@ class MostrarProjeto extends Component {
     };
     return (
       <div>
-        <IndexNavbar />
+        <GestorNavbar />
         <div style={{ paddingTop: "75px" }}>
           <div style={{ textAlign: "center" }}>
             <div
@@ -109,9 +99,6 @@ class MostrarProjeto extends Component {
               <br></br>
               <b>Gestor:</b> {gestor}
               <br></br>
-              <Link to={newTo3}>
-                <Button text="Editar Projeto" />
-              </Link>
             </div>
             <div
               style={{
@@ -133,6 +120,7 @@ class MostrarProjeto extends Component {
                     param2: `${el.descricao}`,
                     param3: `${el.prioridade}`,
                     param4: `${el.projeto}`,
+                    param5: `${utilizador}`,
                   };
 
                   if (id == el.projeto) {
@@ -163,6 +151,9 @@ class MostrarProjeto extends Component {
               border: "1px solid black",
             }}
           >
+            <Link to={newTo4}>
+              <Button text="Definir Equipa" />
+            </Link>
             <Table responsive>
               <thead>
                 <tr>
@@ -182,4 +173,4 @@ class MostrarProjeto extends Component {
   }
 }
 
-export default withRouter(MostrarProjeto);
+export default withRouter(MostrarProjetosUtilizador);

@@ -79,52 +79,50 @@ class Projetos extends Component {
             onClick={(event) => (window.location.href = "/AdicionarProjeto")}
             text="Adicionar Projeto"
           />
+
           {console.log(utilizador)}
           {console.log(tipo)}
 
           <Grid container id="grid" spacing={3}>
             {dados.length > 0 ? (
               remove(dados, dados2).map((el, index) => {
-                console.log(el.gestor);
-                console.log(utilizador);
-                if (el.gestor === utilizador) {
-                  const newTo = {
-                    pathname: "/MostrarProjeto",
-                    param1: `${el.id}`,
-                    param2: `${el.nomeProjeto}`,
-                    param3: `${el.prazo}`,
-                    param4: `${el.gestor}`,
-                    param6: `${el.desc}`,
-                    param7: `${el.equipa}`,
-                    param8: `${utilizador}`,
-                  };
-                  return (
-                    <Grid item xs={12} md={3} lg={3} key={index} id="grid2">
-                      <Link to={newTo}>
-                        <Card
-                          style={{ width: "18rem", cursor: "pointer" }}
-                          id="cardTeste"
-                        >
-                          <Card.Img
-                            variant="top"
-                            id="imageTeste"
-                            src={
-                              "https://grandeconsumo.com/wp-content/uploads/2017/11/upload18637_0-758x569.jpg"
-                            }
-                          />
-                          <Card.Body>
-                            <Card.Title id="tituloTeste">
-                              <h4>{el.nomeProjeto}</h4>
-                            </Card.Title>
-                            <Card.Title id="tituloTeste">
-                              <h4>{el.desc}</h4>
-                            </Card.Title>
-                          </Card.Body>
-                        </Card>
-                      </Link>
-                    </Grid>
-                  );
-                }
+                const newTo = {
+                  pathname: "/MostrarProjeto",
+                  param1: `${el.id}`,
+                  param2: `${el.nomeProjeto}`,
+                  param3: `${el.prazo}`,
+                  param4: `${el.gestor}`,
+                  param6: `${el.desc}`,
+                  param7: `${el.equipa}`,
+                  param8: `${utilizador}`,
+                };
+
+                return (
+                  <Grid item xs={12} md={3} lg={3} key={index} id="grid2">
+                    <Link to={newTo}>
+                      <Card
+                        style={{ width: "18rem", cursor: "pointer" }}
+                        id="cardTeste"
+                      >
+                        <Card.Img
+                          variant="top"
+                          id="imageTeste"
+                          src={
+                            "https://grandeconsumo.com/wp-content/uploads/2017/11/upload18637_0-758x569.jpg"
+                          }
+                        />
+                        <Card.Body>
+                          <Card.Title id="tituloTeste">
+                            <h4>{el.nomeProjeto}</h4>
+                          </Card.Title>
+                          <Card.Title id="tituloTeste">
+                            <h4>{el.desc}</h4>
+                          </Card.Title>
+                        </Card.Body>
+                      </Card>
+                    </Link>
+                  </Grid>
+                );
               })
             ) : (
               <div>Loading....</div>

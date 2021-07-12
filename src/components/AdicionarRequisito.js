@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import IndexNavBar from "./Navbars/IndexNavbar.js";
+import GestorNavBar from "./Navbars/GestorNavbar.js";
 import { Link } from "react-router-dom";
 import { v4 as uuid } from "uuid";
 import { useEffect } from "react";
@@ -12,6 +12,7 @@ const AdicionarRequisito = (props) => {
   const [prioridade, setPrioridade] = useState("");
   const [cliente, setCliente] = useState("");
   const [clientes, setClientes] = useState([]);
+  
 
   useEffect(() => {
     setId(props.location.param1);
@@ -34,7 +35,7 @@ const AdicionarRequisito = (props) => {
       .post("http://localhost:8080/insertRequisito", dados)
       .then(function (response) {
         alert("Inserido com sucesso!");
-        window.location = "/Projetos";
+        window.location = `/ProjetosUtilizador?utilizador=${utilizador}`;
       });
   };
 
@@ -56,7 +57,7 @@ const AdicionarRequisito = (props) => {
   return (
     <div>
       <div>
-        <IndexNavBar />
+        <GestorNavBar />
       </div>
       <div style={{ paddingTop: "75px", margin: "auto", width: "50%" }}>
         <form className="add-form" onSubmit={onSubmit}>

@@ -81,9 +81,9 @@ class ProjetosUtilizador extends Component {
           <Grid container id="grid" spacing={3}>
             {dados.length > 0 ? (
               remove(dados, dados2).map((el, index) => {
-                if (el.gestor === utilizador) {
+                if (el.gestor === utilizador || el.equipa.includes(utilizador)) {
                   const newTo = {
-                    pathname: "/MostrarProjeto",
+                    pathname: "/MostrarProjetosUtilizador",
                     param1: `${el.id}`,
                     param2: `${el.nomeProjeto}`,
                     param3: `${el.prazo}`,

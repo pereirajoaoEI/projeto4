@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import IndexNavBar from "./Navbars/IndexNavbar.js";
+import GestorNavBar from "./Navbars/GestorNavbar.js";
 import { Link } from "react-router-dom";
 import { v4 as uuid } from "uuid";
 import { useEffect } from "react";
@@ -10,12 +10,14 @@ const EditarRequisito = (props) => {
   const [id, setId] = useState("");
   const [prioridade, setPrioridade] = useState("");
   const [projeto, setProjeto] = useState("");
+  const [utilizador, setUtilizador] = useState("");
 
   useEffect(() => {
     setDescricao(props.location.param2);
     setId(props.location.param1);
     setPrioridade(props.location.param3);
-    setProjeto(props.location.param4)
+    setProjeto(props.location.param4);
+    setUtilizador(props.location.param5);
   }, []);
 
   // const id_props = props.location.param1;
@@ -42,14 +44,14 @@ const EditarRequisito = (props) => {
       .post("http://localhost:8080/insertRequisito", dados)
       .then(function (response) {
         alert("Editado com sucesso!");
-        window.location = "/Projetos";
+        window.location = `/ProjetosUtilizador?utilizador=${utilizador}`;
       });
   };
 
   return (
     <div>
       <div>
-        <IndexNavBar />
+        <GestorNavBar />
       </div>
       <div style={{ paddingTop: "75px", margin: "auto", width: "50%" }}>
         <form className="add-form" onSubmit={onSubmit}>
