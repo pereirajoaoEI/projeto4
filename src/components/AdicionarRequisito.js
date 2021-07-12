@@ -12,7 +12,6 @@ const AdicionarRequisito = (props) => {
   const [prioridade, setPrioridade] = useState("");
   const [cliente, setCliente] = useState("");
   const [clientes, setClientes] = useState([]);
-  
 
   useEffect(() => {
     setId(props.location.param1);
@@ -30,6 +29,7 @@ const AdicionarRequisito = (props) => {
       cliente,
       projeto: id,
       categoria: "requisito",
+      estado: "Programado",
     };
     axios
       .post("http://localhost:8080/insertRequisito", dados)
@@ -57,12 +57,12 @@ const AdicionarRequisito = (props) => {
   return (
     <div>
       <div>
-        <GestorNavBar />
+        <GestorNavBar expression={utilizador} />
       </div>
       <div style={{ paddingTop: "75px", margin: "auto", width: "50%" }}>
         <form className="add-form" onSubmit={onSubmit}>
           <div className="form-control">
-            <label style={{ fontSize: "50px" }}>Adicionar Requisito</label>
+            <label style={{ fontSize: "50px", textAlign: "center" }}>Adicionar Requisito</label>
             <label>Descrição</label>
             <input
               type="text"
@@ -70,40 +70,46 @@ const AdicionarRequisito = (props) => {
               onChange={(e) => setDescricao(e.target.value)}
             ></input>
           </div>
-          <div className="form-control">
-            <div style={{ paddingBottom: "7px" }}>
-              <label>Tipo</label>
+          <div>
+            <div style={{display:"inline-block"   }}>
+              <div className="form-control">
+                <div style={{ paddingBottom: "7px" }}>
+                  <label>Prioridade</label>
+                </div>
+
+                <select
+                  type="text"
+                  value={prioridade}
+                  onChange={(e) => setPrioridade(e.target.value)}
+                >
+                  {" "}
+                  <option>Escolha a prioridade ‎‏‏‎‎</option>
+                  <option value="Baixa">Baixa</option>
+                  <option value="Media">Média</option>
+                  <option value="Alta">Alta</option>
+                </select>
+              </div>
             </div>
 
-            <select
-              type="text"
-              value={prioridade}
-              onChange={(e) => setPrioridade(e.target.value)}
-            >
-              {" "}
-              <option>Escolha a prioridade ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ </option>
-              <option value="Baixa">Baixa</option>
-              <option value="Media">Média</option>
-              <option value="Alta">Alta</option>
-            </select>
+            <div style={{display:"inline-block", paddingLeft:"25px"  }}>
+              <div style={{ paddingBottom: "7px" }}>
+                <label>Stakeholder</label>
+              </div>
 
-            <div style={{ paddingBottom: "7px" }}>
-              <label>Stakeholder</label>
+              <select
+                type="text"
+                value={cliente}
+                onChange={(e) => setCliente(e.target.value)}
+              >
+                {" "}
+                <option>Escolha o Stakeholder ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ </option>
+                {clientes.map((cli) => (
+                  <option key={cli.id} value={cli.nomeCompleto}>
+                    {cli.nomeCompleto}
+                  </option>
+                ))}
+              </select>
             </div>
-
-            <select
-              type="text"
-              value={cliente}
-              onChange={(e) => setCliente(e.target.value)}
-            >
-              {" "}
-              <option>Escolha o Stakeholder ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ </option>
-              {clientes.map((cli) => (
-                <option key={cli.id} value={cli.nomeCompleto}>
-                  {cli.nomeCompleto}
-                </option>
-              ))}
-            </select>
           </div>
 
           {/* <Autocomplete

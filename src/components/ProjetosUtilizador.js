@@ -72,12 +72,11 @@ class ProjetosUtilizador extends Component {
     };
     return (
       <div>
-        <GestorNavbar />
+        <GestorNavbar expression={utilizador}/>
+
+        <h1 style={{paddingTop: "75px", fontSize: "30px", textAlign: "center", fontWeight: "bold"}}>Bem vindo {utilizador}</h1>
 
         <div style={{ paddingTop: "75px" }}>
-          {utilizador}
-          <h1> {tipo}</h1>
-
           <Grid container id="grid" spacing={3}>
             {dados.length > 0 ? (
               remove(dados, dados2).map((el, index) => {
@@ -92,6 +91,7 @@ class ProjetosUtilizador extends Component {
                     param6: `${el.desc}`,
                     param7: `${el.equipa}`,
                     param8: `${utilizador}`,
+                    param9: `${tipo}`,
                   };
                   return (
                     <Grid item xs={12} md={3} lg={3} key={index} id="grid2">
@@ -104,15 +104,12 @@ class ProjetosUtilizador extends Component {
                             variant="top"
                             id="imageTeste"
                             src={
-                              "https://grandeconsumo.com/wp-content/uploads/2017/11/upload18637_0-758x569.jpg"
+                              "https://icon-library.com/images/project-icon/project-icon-10.jpg"
                             }
                           />
                           <Card.Body>
                             <Card.Title id="tituloTeste">
-                              <h4>{el.nomeProjeto}</h4>
-                            </Card.Title>
-                            <Card.Title id="tituloTeste">
-                              <h4>{el.desc}</h4>
+                              <h1 style={{fontSize: "20px", textAlign: "center", fontWeight: "bold"}}>{el.nomeProjeto}</h1>
                             </Card.Title>
                           </Card.Body>
                         </Card>

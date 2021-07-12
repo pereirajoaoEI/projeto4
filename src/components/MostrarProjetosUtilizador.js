@@ -49,10 +49,9 @@ class MostrarProjetosUtilizador extends Component {
     const descricao = this.props.location.param6;
     const equipa = this.props.location.param7;
     const utilizador = this.props.location.param8;
+    const tipo = this.props.location.param9;
     const { dados } = this.state;
     const { dados2 } = this.state;
-
-    console.log(equipa);
 
     const newTo2 = {
       pathname: "/AdicionarRequisito",
@@ -83,23 +82,34 @@ class MostrarProjetosUtilizador extends Component {
     };
     return (
       <div>
-        <GestorNavbar />
+        <GestorNavbar expression={utilizador} />
+
         <div style={{ paddingTop: "75px" }}>
-          <div style={{ textAlign: "center" }}>
+          <div style={{ textAlign: "center"}}>
             <div
               style={{
                 border: "1px solid black",
                 display: "inline-block",
-                verticalAlign: "middle",
                 width: "50%",
               }}
             >
-              <b> Prazo: </b>
-              {prazo}
+              <h1
+                style={{
+                  fontSize: "22.5px",
+                }}
+              >
+                Detalhes do Projeto:
+              </h1>
+              <b> Descrição: </b> {descricao}
+              <br></br>
+              <b> Prazo: </b> {prazo}
               <br></br>
               <b>Gestor:</b> {gestor}
               <br></br>
             </div>
+
+            {/* EDITAR REQUiSITOS */}
+
             <div
               style={{
                 border: "1px solid black",
@@ -108,9 +118,17 @@ class MostrarProjetosUtilizador extends Component {
                 width: "50%",
               }}
             >
+              <h1
+                style={{
+                  fontSize: "22.5px",
+                }}
+              >
+                Requisitos do Projeto:
+              </h1>
+
               <Link to={newTo2}>
                 <Button text="Adicionar Requisito" />
-              </Link>
+              </Link> 
 
               {dados.length > 0 ? (
                 remove(dados, dados2).map((el, index) => {
@@ -121,21 +139,28 @@ class MostrarProjetosUtilizador extends Component {
                     param3: `${el.prioridade}`,
                     param4: `${el.projeto}`,
                     param5: `${utilizador}`,
+                    param6: `${el.cliente}`,
+                    param7: `${el.estado}`,
                   };
 
                   if (id == el.projeto) {
                     return (
-                      <div style={{ border: "1px solid black" }}>
+                      <div style={{borderRadius: "50px", border:" 1px solid black", padding:"10px"}}>
                         <b>Stakeholder: </b>
                         {el.cliente}
                         <br></br>
                         <b>Autor: </b>
                         {el.utilizador}
                         <br></br>
-                        <Link to={newTo}>
-                          <i class="fas fa-edit"></i>
-                        </Link>
-                        {el.descricao}
+                        <b>Estado: </b>
+                        {el.estado}
+                        <br></br> 
+                        <div>
+                          {el.descricao}
+                          <Link paddinfleft="5px" to={newTo}>
+                            <i class="fas fa-edit"></i>
+                          </Link>
+                        </div>
                       </div>
                     );
                   }
@@ -144,16 +169,26 @@ class MostrarProjetosUtilizador extends Component {
                 <div>Nao existem requisitos a mostrar</div>
               )}
             </div>
+
           </div>
+
+          {/* Equipa */}
+
           <div
             style={{
               width: "50%",
-              border: "1px solid black",
+              //border: "1px solid black",
+              textAlign: "center",
             }}
           >
-            <Link to={newTo4}>
-              <Button text="Definir Equipa" />
-            </Link>
+            {gestor === utilizador ? (
+              <Link to={newTo4}>
+                <Button text="Definir Equipa" />
+              </Link>
+            ) : (
+              <div> </div>
+            )}
+
             <Table responsive>
               <thead>
                 <tr>

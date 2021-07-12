@@ -67,7 +67,7 @@ const DefinirEquipa = (props) => {
   return (
     <div>
       <div>
-        <GestorNavBar />
+        <GestorNavBar expression={utilizador}/>
       </div>
       <div style={{ paddingTop: "75px", margin: "auto", width: "50%" }}>
         <form className="add-form" onSubmit={onSubmit}>

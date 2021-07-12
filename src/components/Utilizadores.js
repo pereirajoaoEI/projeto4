@@ -91,7 +91,7 @@ class Utilizadores extends Component {
                         variant="top"
                         id="imageTeste"
                         src={
-                          "https://cdn.pixabay.com/photo/2018/08/28/12/41/avatar-3637425_960_720.png"
+                          "https://cdn.pixabay.com/photo/2018/04/18/18/56/user-3331257_960_720.png"
                         }
                       />
                       <Card.Body>

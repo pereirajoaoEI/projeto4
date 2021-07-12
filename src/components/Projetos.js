@@ -74,7 +74,9 @@ class Projetos extends Component {
       <div>
         <IndexNavbar />
 
-        <div style={{ paddingTop: "75px" }}>
+        <h1 style={{paddingTop: "75px", fontSize: "30px"}}>Bem vindo {utilizador}</h1>
+
+        <div style={{ paddingTop: "75px", textAlign: "center"}}>
           <Button
             onClick={(event) => (window.location.href = "/AdicionarProjeto")}
             text="Adicionar Projeto"
@@ -108,7 +110,7 @@ class Projetos extends Component {
                           variant="top"
                           id="imageTeste"
                           src={
-                            "https://grandeconsumo.com/wp-content/uploads/2017/11/upload18637_0-758x569.jpg"
+                            "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Noun_Project_projects_icon_1327109_cc.svg/1024px-Noun_Project_projects_icon_1327109_cc.svg.png"
                           }
                         />
                         <Card.Body>
