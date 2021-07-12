@@ -115,10 +115,7 @@ class Projetos extends Component {
                         />
                         <Card.Body>
                           <Card.Title id="tituloTeste">
-                            <h4>{el.nomeProjeto}</h4>
-                          </Card.Title>
-                          <Card.Title id="tituloTeste">
-                            <h4>{el.desc}</h4>
+                          <h1 style={{fontSize: "20px", textAlign: "center", fontWeight: "bold"}}>{el.nomeProjeto}</h1>
                           </Card.Title>
                         </Card.Body>
                       </Card>
@@ -127,7 +124,7 @@ class Projetos extends Component {
                 );
               })
             ) : (
-              <div>Loading....</div>
+              <div style={{margin: "Auto", paddingTop: "30px"}}>Não existem projetos a mostrar</div>
             )}
           </Grid>
         </div>

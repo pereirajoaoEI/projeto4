@@ -92,7 +92,7 @@ const AdicionarProjeto = (props) => {
               {" "}
               <option>Escolha o Gestor de Equipa ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ </option>
               {gestores.map((ges) => (
-                <option key={ges.id} value={ges.nomeCompleto}>
+                <option key={ges.id} value={ges.utilizador}>
                   {ges.nomeCompleto}
                 </option>
               ))}

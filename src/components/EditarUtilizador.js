@@ -12,6 +12,7 @@ const EditarUtilizador = (props) => {
   const [contacto, setContacto] = useState("");
   const [tipo, setTipo] = useState("");
   const [idAntigo, setIdAntigo] = useState("");
+  const [utilizadorParam, setUtilizadorParam] = useState("");
 
   const options = [
     "Monday",
@@ -29,15 +30,8 @@ const EditarUtilizador = (props) => {
     setContacto(props.location.param6);
     setTipo(props.location.param7);
     setIdAntigo(props.location.param1);
+    setUtilizadorParam(props.location.param9);
   }, []);
-
-  // const id_props = props.location.param1;
-  // const id_antigo_props = props.location.param2;
-  // const password_props = props.location.param4;
-  // const nomeCompleto_props = props.location.param5;
-  // const contacto_props = props.location.param6;
-  // const tipo_props = props.location.param7;
-  // const categoria_props = props.location.param8;
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -55,14 +49,14 @@ const EditarUtilizador = (props) => {
       .post("http://localhost:8080/insertUser", dados)
       .then(function (response) {
         alert("Editado com sucesso!");
-        window.location = "/Utilizadores";
+        window.location = `/Utilizadores?utilizador=${utilizadorParam}`;
       });
   };
 
   return (
     <div>
       <div>
-        <IndexNavBar />
+        <IndexNavBar expresion={utilizadorParam}/>
       </div>
       <div style={{ paddingTop: "75px", margin: "auto", width: "50%" }}>
         <form className="add-form" onSubmit={onSubmit}>
@@ -111,8 +105,7 @@ const EditarUtilizador = (props) => {
               onChange={(e) => setTipo(e.target.value)}
             >
               {" "}
-              <option value="Administrador">Administrador</option>
-              <option value="Gestor de Equipa">Gestor de Equipa</option>
+              <option value="Administrador">Administrador ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎  ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎  ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ </option>
               <option value="Developer">Developer</option>
               <option value="Cliente">Cliente</option>
             </select>

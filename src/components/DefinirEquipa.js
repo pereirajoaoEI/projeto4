@@ -67,25 +67,24 @@ const DefinirEquipa = (props) => {
   return (
     <div>
       <div>
-        <GestorNavBar expression={utilizador}/>
+        <GestorNavBar expression={utilizador} />
       </div>
       <div style={{ paddingTop: "75px", margin: "auto", width: "50%" }}>
         <form className="add-form" onSubmit={onSubmit}>
           <div className="form-control">
             <label style={{ fontSize: "50px" }}>Membros da Equipa</label>
-            <div style={{ width: "5%" }}>
+            <div style={{ width: "50%", display: "inline-block" }}>
               {developers.map((dev) => {
-                if (dev.nomeCompleto != utilizador) {
-                  return(
+                if (dev.utilizador != utilizador) {
+                  return (
                     <div>
-                      <div>
-                        <h4 for="scales">{dev.nomeCompleto}</h4>
-                      </div>
-                      <div>
+                      <div
+                      style={{display: "inline-block", width: "35px" }}
+                      >
                         <input
                           type="checkbox"
                           key={dev.id}
-                          value={dev.nomeCompleto}
+                          value={dev.utilizador}
                           onChange={(e) => {
                             if (e.target.checked) {
                               setEquipa([...equipa, e.target.value]);
@@ -95,9 +94,17 @@ const DefinirEquipa = (props) => {
                           }}
                         />
                       </div>
+                      <div style={{display: "inline-block", paddingLeft:"16px" }}>
+                        <h4
+                          for="scales"
+                        >
+                          {dev.nomeCompleto}
+                        </h4>
+                      </div>
+                      
                     </div>
                   );
-                } 
+                }
               })}
               {/* <label for="scales">{developers.nomeCompleto}</label> */}
               {/* <input type="checkbox" id="scales" name="scales" /> */}

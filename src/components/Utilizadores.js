@@ -43,7 +43,7 @@ class Utilizadores extends Component {
     const { dados2 } = this.state;
     const search = this.props.location.search;
     const params = new URLSearchParams(search);
-    const utilizador = params.get("utilizador");
+    const utilizadorParam = params.get("utilizador");
 
     const remove = (array1, array2) => {
       for (var ar1 of array1) {
@@ -57,15 +57,15 @@ class Utilizadores extends Component {
     };
     return (
       <div>
-        <IndexNavbar expression={utilizador}/>
+        <IndexNavbar expression={utilizadorParam}/>
 
-        <div style={{ paddingTop: "75px" }}>
+        <div style={{ paddingTop: "75px", textAlign:"center" }}>
           <Button
-            onClick={(event) => (window.location = `/AdicionarUtilizador?utilizador=${utilizador}`)}
+            onClick={(event) => (window.location = `/AdicionarUtilizador?utilizador=${utilizadorParam}`)}
             text="Adicionar Utilizador"
           />
           <Button
-            onClick={(event) => (window.location = `/AdicionarCliente?utilizador=${utilizador}`)}
+            onClick={(event) => (window.location = `/AdicionarCliente?utilizador=${utilizadorParam}`)}
             text="Adicionar Cliente"
           />
 
@@ -81,7 +81,7 @@ class Utilizadores extends Component {
                 param6: `${el.contacto}`,
                 param7: `${el.tipo}`,
                 param8: `${el.categoria}`,
-                param9: `${utilizador}`,
+                param9: `${utilizadorParam}`,
               };
 
               return (
