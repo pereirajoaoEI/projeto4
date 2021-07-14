@@ -181,6 +181,7 @@ class MostrarProjeto extends Component {
                           border: " 1px solid black",
                           padding: "10px",
                           marginTop: "5px",
+                          backgroundColor: el.estado === "Backlog" ? "#666699" : el.estado === "Desenvolvimento" ? "#0066ff" : el.estado === "Concluido" ? "#00cc00" : el.estado === "Cancelado" ? "#ff1a1a" : "#ffffff",
                         }}
                       >
                         <b>Stakeholder: </b>

@@ -220,6 +220,9 @@ class MostrarProjetosUtilizador extends Component {
                             <div>
                               <b>Descrição: </b> {el.descricao}
                             </div>
+                            <div>
+                              <b>Prioridade: </b> {el.prioridade}
+                            </div>
                           </div>
                         </Link>
                       </div>
